@@ -1,8 +1,10 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+// list of all the required environment variables
 const requiredEnvVars = ["MONGO_URI", "PORT"];
 
+// missing environment variables
 const missingEnvVars = requiredEnvVars.filter((envVar) => !process.env[envVar]);
 
 if (missingEnvVars.length > 0) {

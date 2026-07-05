@@ -7,10 +7,12 @@ export const createShortUrl = asyncHandler(async (req, res) => {
   const { originalUrl, customName } = req.body;
   let shortCode;
 
+  // throw error if there is no url given by the user
   if (!originalUrl) {
     throw new ApiError(400, "No url found");
   }
 
+  // check wether the shortcode already exists
   if (customName) {
     const nameExists = await UrlModel.findOne({ shortCode: customName });
 
