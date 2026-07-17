@@ -10,6 +10,9 @@ const urlSchema = new mongoose.Schema(
     shortCode: {
       type: String,
       required: true,
+      unique: true, // Automating the creation of unique index
+      index: true, // Fast Lookups
+      trim: true,
     },
     userId: {
       type: mongoose.Schema.Types.ObjectId,
