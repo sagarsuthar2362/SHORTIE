@@ -53,8 +53,10 @@ export const redirectUrl = asyncHandler(async (req, res) => {
     throw new ApiError(404, "url does not exist");
   }
 
-  urlRecord.clicks = (urlRecord.clicks || 0) + 1;
-  urlRecord.save();
+  // increment the count of the clicks whenever user request the url
+  UrlModel.updateOne({ shortCode }, { $inc: { clicks: 1 } }).catch((err) =>
+    console.error("click update failed:", err),
+  );
 
   return res.redirect(urlRecord.originalUrl);
 });
