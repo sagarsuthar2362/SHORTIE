@@ -24,7 +24,7 @@ export const createShortUrl = asyncHandler(async (req, res) => {
 
     const codeExists = await UrlModel.findOne({ shortCode });
 
-    if (shortCode) {
+    if (codeExists) {
       throw new ApiError(400, "Short code already exists");
     }
   }
